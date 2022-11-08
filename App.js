@@ -1,3 +1,5 @@
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
@@ -7,14 +9,10 @@ import DefaultText from './src/components/DefaultText';
 import MealsFilter from './src/components/MealsFilter';
 import SearchBar from './src/components/SearchBar';
 import RecipeContext from './src/context/RecipeContext';
+import Recipe from './src/pages/Recipe';
 
-export default function App() {
-  const [fontsLoaded] = useFonts({
-    'Epilogue': require('./assets/fonts/Epilogue-Regular.ttf'),
-    'Epilogue-Medium': require('./assets/fonts/Epilogue-Medium.ttf'),
-    'Epilogue-SemiBold': require('./assets/fonts/Epilogue-SemiBold.ttf'),
-    'Epilogue-Bold': require('./assets/fonts/Epilogue-Bold.ttf'),
-  });
+function Home({ navigation }) {
+ 
   const [clicked, setClicked] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [active, setActive] = useState('Breakfast');
@@ -35,9 +33,7 @@ export default function App() {
       idMeal: "52957"
     }]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+ 
 
   return (
     <RecipeContext.Provider value={{ recipes, setRecipes, active, setActive }}>
@@ -59,10 +55,37 @@ export default function App() {
       <DefaultText family='bold' value='Cozinhar é um ato de amor ❤️' style={{ color: '#FFE31C', fontSize: 22}} />
       <SearchBar clicked={clicked} setClicked={setClicked} searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} />
       <MealsFilter />
-      <Cards recipes={recipes} />
+      <Cards navigation={navigation} recipes={recipes} />
       <StatusBar style="auto" />
     </View>
     </TouchableWithoutFeedback>
     </RecipeContext.Provider>
   );
 }
+
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  const [fontsLoaded] = useFonts({
+    'Epilogue': require('./assets/fonts/Epilogue-Regular.ttf'),
+    'Epilogue-Medium': require('./assets/fonts/Epilogue-Medium.ttf'),
+    'Epilogue-SemiBold': require('./assets/fonts/Epilogue-SemiBold.ttf'),
+    'Epilogue-Bold': require('./assets/fonts/Epilogue-Bold.ttf'),
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Recipe" component={Recipe} options={{ title: 'Detalhes da Receita', headerStyle: {
+            backgroundColor: '#FFE31C',
+          }, headerTintColor: '#B30B61', headerTitleStyle: { fontFamily: 'Epilogue-Bold' }, headerBackTitleVisible: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;

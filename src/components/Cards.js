@@ -1,12 +1,22 @@
+import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import DefaultText from "./DefaultText";
 
-const Cards = ({ recipes }) => {
+const Cards = ({ recipes, navigation }) => {
+    const getRecipeInformation = (recipeId) => {
+        if (recipeId === '') {
+            return;
+        }
+        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`).then((res) => {
+            navigation.navigate('Recipe', { recipe: res.data.meals[0] })
+        }).catch((err) => console.error(err));
+    };
     return (
         <View style={{ width: '100%', marginTop: 20 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-               {recipes[0] && <TouchableOpacity style={{ ...styles.touchableOpacity, marginHorizontal: 14, flexShrink: 1, width: 200 }}>
+               {recipes[0] && <TouchableOpacity style={{ ...styles.touchableOpacity, marginHorizontal: 14, flexShrink: 1, width: 200 }} onPress={() => getRecipeInformation(recipes[0].idMeal)}>
+
                     <LinearGradient style={styles.linearGradient} colors={['rgba(179, 11, 97, 0.4)', 'rgba(255, 227, 28, 0.8)']}>
                         <Image
                             style={styles.smallLogo}
@@ -15,7 +25,7 @@ const Cards = ({ recipes }) => {
                         <DefaultText value={recipes[0].strMeal} family='semiBold' style={{ color: '#B30B61', fontSize: 20, alignSelf: 'flex-start' }} />
                     </LinearGradient>
                 </TouchableOpacity>} 
-                {recipes[1] && <TouchableOpacity style={{ ...styles.touchableOpacity, marginHorizontal: 14, flexShrink: 1, width: 200 }}>
+                {recipes[1] && <TouchableOpacity style={{ ...styles.touchableOpacity, marginHorizontal: 14, flexShrink: 1, width: 200 }} onPress={() => getRecipeInformation(recipes[1].idMeal)}>
                     <LinearGradient style={styles.linearGradient} colors={['rgba(179, 11, 97, 0.4)', 'rgba(255, 227, 28, 0.8)']}>
                         <Image
                             style={styles.smallLogo}
@@ -25,7 +35,7 @@ const Cards = ({ recipes }) => {
                     </LinearGradient>
                 </TouchableOpacity>}
             </View>
-            {recipes[2] && <TouchableOpacity style={{ ...styles.touchableOpacity, marginTop: 18, width: 300, alignSelf: 'center' }}>
+            {recipes[2] && <TouchableOpacity style={{ ...styles.touchableOpacity, marginTop: 18, width: 300, alignSelf: 'center' }} onPress={() => getRecipeInformation(recipes[2].idMeal)}>
                 <LinearGradient style={styles.linearGradient} colors={['rgba(179, 11, 97, 0.4)', 'rgba(255, 227, 28, 0.8)']}>
                     <Image
                         style={styles.largeLogo}
