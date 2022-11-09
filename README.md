@@ -1,4 +1,4 @@
-# Cozinhar é um Ato de Amor
+# Cozinhar é um Ato de Amor ❤️
 
 Aplicativo desenvolvido para o Projeto Integrador do Senac, entitulado: DESENVOLVIMENTO DE SISTEMA WEB MODULARIZÁVEL.
 
