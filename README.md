@@ -22,9 +22,10 @@ Aplicativo desenvolvido para o Projeto Integrador do Senac, entitulado: DESENVOL
 - LETICIA RICO DE OLIVEIRA
 - MURILO VIEIRA ALVES
 
-## Demonstração no YouTube
+## Demonstração no YouTube e Protótipo Figma
 
-Link: https://www.youtube.com/shorts/RcYPtIPjhu4
+Link demonstração: https://www.youtube.com/shorts/RcYPtIPjhu4
+Link protótipo: https://www.figma.com/file/aoiJtHnAFBnLJ4jUEn5O5G/Prot%C3%B3tipo-Receitas---PI-Senac-4%C2%BA-Semestre?node-id=0%3A1
 
 ## Como rodar o app
 
