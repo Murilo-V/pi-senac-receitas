@@ -39,7 +39,7 @@ Clone o repositório
 Vá para o diretório
 
 ```bash
-  cd my-project
+  cd pi-senac-receitas
 ```
 
 Instale as dependências
