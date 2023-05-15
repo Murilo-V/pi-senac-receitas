@@ -8,9 +8,7 @@ const Cards = ({ recipes, navigation }) => {
         if (recipeId === '') {
             return;
         }
-        axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`).then((res) => {
-            navigation.navigate('Recipe', { recipe: res.data.meals[0] })
-        }).catch((err) => console.error(err));
+        navigation.navigate('Recipe', { recipe: recipes.find((value) => value.idMeal === recipeId) })
     };
     return (
         <View style={{ width: '100%', marginTop: 20 }}>

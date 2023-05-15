@@ -1,7 +1,7 @@
-import { Entypo, FontAwesome, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import { Entypo, FontAwesome, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import RecipeContext from "../context/RecipeContext";
 import DefaultText from "./DefaultText";
@@ -15,52 +15,42 @@ const MealsFilter = () => {
     const { setRecipes, active, setActive } = useContext(RecipeContext);
 
     const filterByCategory = async (category) => {
-        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`).then((res) => {
-            setRecipes(res.data.meals.slice(0,3));
+        axios.post(`http://localhost:3000/recipes`, { type: category }).then((res) => {
+            setRecipes(res.data);
             setActive(category);
         }).catch((err) => console.error(err));
     };
     return (
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 35, alignSelf: 'center' }}>
-            <TouchableOpacity style={active === 'Breakfast' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('Breakfast')}>
-                <LinearGradient style={active === 'Breakfast' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'Breakfast' ? gradients.enabled : gradients.disabled}>
-                    <FontAwesome
-                        name="coffee"
+            <TouchableOpacity style={active === 'diabetes' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('diabetes')}>
+                <LinearGradient style={active === 'diabetes' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'diabetes' ? gradients.enabled : gradients.disabled}>
+                    <FontAwesome5
+                        name="candy-cane"
                         size={30}
-                        color={active === 'Breakfast' ? '#B30B61' : '#FFE31C'}
+                        color={active === 'diabetes' ? '#B30B61' : '#FFE31C'}
                     />
                 </LinearGradient>
-                <DefaultText family='semiBold' value='Matinal' style={{ fontSize: 11, color: '#FFE31C', marginTop: 8 }} />
+                <DefaultText family='semiBold' value='Diabéticos' style={{ fontSize: 10, color: '#FFE31C', marginTop: 8 }} />
             </TouchableOpacity>
-            <TouchableOpacity style={active === 'Beef' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('Beef')}>
-                <LinearGradient style={active === 'Beef' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'Beef' ? gradients.enabled : gradients.disabled}>
+            <TouchableOpacity style={active === 'lactose' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('lactose')}>
+                <LinearGradient style={active === 'lactose' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'lactose' ? gradients.enabled : gradients.disabled}>
                     <MaterialIcons
                         name="lunch-dining"
                         size={30}
-                        color={active === 'Beef' ? '#B30B61' : '#FFE31C'}
+                        color={active === 'lactose' ? '#B30B61' : '#FFE31C'}
                     />
                 </LinearGradient>
-                <DefaultText family='semiBold' value='Carnes' style={{ fontSize: 11, color: '#FFE31C', marginTop: 8 }} />
+                <DefaultText family='semiBold' value='Sem Lactose' style={{ fontSize: 10, color: '#FFE31C', marginTop: 8 }} />
             </TouchableOpacity>
-            <TouchableOpacity style={active === 'Vegan' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('Vegan')}>
-                <LinearGradient style={active === 'Vegan' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'Vegan' ? gradients.enabled : gradients.disabled}>
+            <TouchableOpacity style={active === 'vegano' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('vegano')}>
+                <LinearGradient style={active === 'vegano' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'vegano' ? gradients.enabled : gradients.disabled}>
                     <Entypo
                         name="leaf"
                         size={30}
-                        color={active === 'Vegan' ? '#B30B61' : '#FFE31C'}
+                        color={active === 'vegano' ? '#B30B61' : '#FFE31C'}
                     />
                 </LinearGradient>
-                <DefaultText family='semiBold' value='Veganos' style={{ fontSize: 11, color: '#FFE31C', marginTop: 8 }} />
-            </TouchableOpacity>
-            <TouchableOpacity style={active === 'Dessert' ? styles.touchableOpacityEnabled : styles.touchableOpacityDisabled} onPress={() => filterByCategory('Dessert')}>
-                <LinearGradient style={active === 'Dessert' ? styles.linearGradientEnabled : styles.linearGradientDisabled} colors={active === 'Dessert' ? gradients.enabled : gradients.disabled}>
-                    <MaterialCommunityIcons
-                        name="cupcake"
-                        size={30}
-                        color={active === 'Dessert' ? '#B30B61' : '#FFE31C'}
-                    />
-                </LinearGradient>
-                <DefaultText family='semiBold' value='Sobremesas' style={{ fontSize: 11, color: '#FFE31C', marginTop: 8 }} />
+                <DefaultText family='semiBold' value='Veganos' style={{ fontSize: 10, color: '#FFE31C', marginTop: 8 }} />
             </TouchableOpacity>
         </View>
     )

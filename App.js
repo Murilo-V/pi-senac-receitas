@@ -15,22 +15,22 @@ function Home({ navigation }) {
  
   const [clicked, setClicked] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState('');
-  const [active, setActive] = useState('Breakfast');
+  const [active, setActive] = useState('diabetes');
   const [recipes, setRecipes] = useState([
     {
-      strMeal: "Breakfast Potatoes",
-      strMealThumb: "https://www.themealdb.com/images/media/meals/1550441882.jpg",
-      idMeal: "52965"
+      strMeal: "Charuto de Couve",
+      strMealThumb: "https://www.mundoboaforma.com.br/wp-content/uploads/2021/06/charuto.jpg",
+      idMeal: 1
     },
     {
-      strMeal: "English Breakfast",
-      strMealThumb: "https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg",
-      idMeal: "52895"
+      strMeal: "Strogonoff",
+      strMealThumb: "https://www.mundoboaforma.com.br/wp-content/uploads/2021/06/Strogonoff-frango.jpg",
+      idMeal: 2
     },
     {
-      strMeal: "Fruit and Cream Cheese Breakfast Pastries",
-      strMealThumb: "https://www.themealdb.com/images/media/meals/1543774956.jpg",
-      idMeal: "52957"
+      strMeal: "Abobrinha recheada",
+      strMealThumb: "https://www.mundoboaforma.com.br/wp-content/uploads/2021/06/abobrinha-fit.jpg",
+      idMeal: 3
     }]);
 
  

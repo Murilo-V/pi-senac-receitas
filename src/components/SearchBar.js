@@ -12,27 +12,27 @@ const SearchBar = ({clicked, searchPhrase, setSearchPhrase, setClicked}) => {
     if (searchPhrase === '') {
       setRecipes([
         {
-          strMeal: "Breakfast Potatoes",
-          strMealThumb: "https://www.themealdb.com/images/media/meals/1550441882.jpg",
-          idMeal: "52965"
+          strMeal: "Charuto de Couve",
+          strMealThumb: "https://www.mundoboaforma.com.br/wp-content/uploads/2021/06/charuto.jpg",
+          idMeal: 1
         },
         {
-          strMeal: "English Breakfast",
-          strMealThumb: "https://www.themealdb.com/images/media/meals/utxryw1511721587.jpg",
-          idMeal: "52895"
+          strMeal: "Strogonoff",
+          strMealThumb: "https://www.mundoboaforma.com.br/wp-content/uploads/2021/06/Strogonoff-frango.jpg",
+          idMeal: 2
         },
         {
-          strMeal: "Fruit and Cream Cheese Breakfast Pastries",
-          strMealThumb: "https://www.themealdb.com/images/media/meals/1543774956.jpg",
-          idMeal: "52957"
+          strMeal: "Abobrinha recheada",
+          strMealThumb: "https://www.mundoboaforma.com.br/wp-content/uploads/2021/06/abobrinha-fit.jpg",
+          idMeal: 3
         }]);
-        setActive('Breakfast');
+        setActive('diabetes');
     } else {
-      axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchPhrase}`).then((res) => {
-            if (res.data.meals === null) {
+      axios.post(`http://localhost:3000/filter`, { searchPhrase }).then((res) => {
+            if (!res.data.length) {
               setRecipes([{ strMeal: 'Não há receitas com este nome', strMealThumb: 'https://i.ibb.co/C1jLQvr/sad-svgrepo-com-1.png', idMeal: '' }])
             } else {
-              setRecipes(res.data.meals.slice(0,3));
+              setRecipes(res.data);
               setActive('');
             }
         }).catch((err) => console.error(err));
