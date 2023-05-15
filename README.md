@@ -21,7 +21,7 @@ Aplicativo desenvolvido para o Projeto Integrador do Senac, entitulado: CRIAÇÃ
 
 ## Demonstração no YouTube e Protótipo Figma
 
-[Demonstração YouTube clique aqui](https://www.youtube.com/shorts/RcYPtIPjhu4).
+[Demonstração YouTube clique aqui](https://youtu.be/fQSQEiTVRys).
 
 [Protótipo Figma clique aqui](https://www.figma.com/file/aoiJtHnAFBnLJ4jUEn5O5G/Prot%C3%B3tipo-Receitas---PI-Senac?type=design&node-id=0%3A1&t=eoEKsQRXwkiCDoAN-1).
 
